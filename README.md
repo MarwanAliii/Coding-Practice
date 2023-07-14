@@ -1,2 +1,1 @@
-# C-Practice
-Practice C++/C through project based learning
+Practice differnet Programming skills through project based learning
