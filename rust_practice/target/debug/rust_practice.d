@@ -1,0 +1,1 @@
+/home/marwan/Coding-Practice/rust_practice/target/debug/rust_practice: /home/marwan/Coding-Practice/rust_practice/src/exercises/health_statistics.rs /home/marwan/Coding-Practice/rust_practice/src/exercises/mod.rs /home/marwan/Coding-Practice/rust_practice/src/exercises/storing_books.rs /home/marwan/Coding-Practice/rust_practice/src/main.rs
