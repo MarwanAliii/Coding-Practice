@@ -1,8 +1,8 @@
-struct Library {
+pub struct Library {
     books: Vec<Book>,
 }
 
-struct Book {
+pub struct Book {
     title: String,
     year: u16,
 }
@@ -59,7 +59,7 @@ impl Library {
     }
 }
 
-fn main() {
+pub fn run() {
     let mut library = Library::new();
 
     println!(
