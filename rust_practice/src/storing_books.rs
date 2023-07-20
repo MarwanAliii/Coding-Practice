@@ -44,7 +44,18 @@ impl Library {
 
     // return the oldest book in the library
     fn oldest_book(&self) -> Option<&Book> {
-        self.books.iter().min_by_key(|book| book.year)
+        // Using a closure and a built-in method:
+        // self.books.iter().min_by_key(|book| book.year)
+
+        // Longer hand-written solution:
+        let mut oldest: Option<&Book> = None;
+        for book in self.books.iter() {
+            if oldest.is_none() || book.year < oldest.unwrap().year {
+                oldest = Some(book);
+            }
+        }
+
+        oldest
     }
 }
 
