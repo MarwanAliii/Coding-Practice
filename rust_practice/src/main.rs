@@ -1,7 +1,8 @@
-mod practice_problems;
-mod variables;
+mod exercises;
 
 fn main() {
-    //practice_problems::storing_books::run();
-    variables::main::problem1();
+    // Test out storing_books
+    //exercises::storing_books::main();
+    // Test out health_statistics
+    exercises::health_statistics::main();
 }

@@ -1,0 +1,5 @@
+C:\Users\ali186\Coding-Practice\sensor_serialization\target\debug\deps\sensor_serialization-ca6db4dbe6c32560.rmeta: src\main.rs
+
+C:\Users\ali186\Coding-Practice\sensor_serialization\target\debug\deps\sensor_serialization-ca6db4dbe6c32560.d: src\main.rs
+
+src\main.rs:
