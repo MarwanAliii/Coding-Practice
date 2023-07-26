@@ -3,7 +3,6 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::path::Path;
 
-use csv;
 use rkyv::ser::{serializers::AllocSerializer, Serializer};
 
 use rkyv_derive::{Archive, Serialize};
@@ -33,16 +32,43 @@ fn main() -> Result<(), Box<dyn Error>> {
     let csv_path = Path::new("./sensor_readings.csv");
     let mut binary_file = File::create("./sensor_readings.bin")?;
 
-    // Create a CSV parser
-    let mut reader = csv::Reader::from_path(csv_path)?;
+    // Open the csv file
+    let mut csv_file = File::open(&csv_path)?;
 
     // Create a vector to hold all the serialized records
     let mut all_bytes: Vec<u8> = Vec::new();
 
-    // Iterate over each record in the CSV
-    for result in reader.deserialize() {
-        // Deserialize the record into SensorReadings struct
-        let record: SensorReadings = result?;
+    let mut contents = String::new();
+    csv_file.read_to_string(&mut contents)?;
+
+    // Skip the header line
+    let lines: Vec<&str> = contents.lines().skip(1).collect();
+
+    // Iterate over each line in the CSV
+    for line in lines {
+        // Split the line into fields
+        let fields: Vec<&str> = line.split(',').collect();
+        if fields.len() != 14 {
+            return Err("Incorrect number of fields in CSV line".into());
+        }
+
+        // Parse each field and create a SensorReadings struct
+        let record = SensorReadings {
+            timestamp: fields[0].parse()?,
+            q_w: fields[1].parse()?,
+            q_x: fields[2].parse()?,
+            q_y: fields[3].parse()?,
+            q_z: fields[4].parse()?,
+            x: fields[5].parse()?,
+            y: fields[6].parse()?,
+            z: fields[7].parse()?,
+            speed_x: fields[8].parse()?,
+            speed_y: fields[9].parse()?,
+            speed_z: fields[10].parse()?,
+            gyr_x: fields[11].parse()?,
+            gyr_y: fields[12].parse()?,
+            gyr_z: fields[13].parse()?,
+        };
 
         // Serialize the struct to binary using rkyv
         let mut serializer = AllocSerializer::<4096>::default();
@@ -58,3 +84,4 @@ fn main() -> Result<(), Box<dyn Error>> {
 
     Ok(())
 }
+
