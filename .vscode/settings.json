@@ -1,0 +1,6 @@
+{
+    "rust-analyzer.linkedProjects": [
+        "./sensor_serialization/Cargo.toml",
+        "./sensor_serialization/Cargo.toml"
+    ]
+}
